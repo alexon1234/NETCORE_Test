@@ -1,0 +1,45 @@
+version: '3.1'
+
+services:
+  web:
+    build:
+      context: ./webapi
+      dockerfile: Dockerfile
+    ports:
+      - 5000:80
+    environment:
+      DB_CONNECTION_STRING: "host=db;port=5432;database=paymentdb;username=root;password=root"
+    depends_on:
+      - db
+    networks:
+      - bridge
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./postgresql-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "paymentdb"
+    networks: 
+      - bridge
+    ports: 
+      - 7000:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 5050:8080
+    networks: 
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge 
+    
+volumes:
+  db_volume:
