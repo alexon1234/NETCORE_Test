@@ -4,11 +4,6 @@ mono: none
 sudo: required
 dist: xenial
 dotnet: 2.2
-# addons:
-#   sonarcloud:
-#     organization: "$SONAR_ORGANIZATION_KEY"
-#     token:
-#       secure: "$SONAR_TOKEN"
 
 install:
  - dotnet tool install --global dotnet-sonarscanner 
@@ -17,7 +12,7 @@ before_script:
  - export PATH="$PATH:$HOME/.dotnet/tools"
 
 script:
- - dotnet sonarscanner begin /k:"$SONAR_PROJECT" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$SONAR_TOKEN" /d:sonar.language="cs" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.cs.opencover.reportsPaths="lcov.opencover.xml" || true
+ - dotnet sonarscanner begin /k:"$SONAR_PROJECT" /d:sonar.login="$SONAR_TOKEN" || true
  - dotnet restore
  - dotnet build
  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./lcov
