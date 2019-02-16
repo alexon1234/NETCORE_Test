@@ -12,7 +12,7 @@ before_script:
  - export PATH="$PATH:$HOME/.dotnet/tools"
 
 script:
- - dotnet sonarscanner begin /k:"$SONAR_PROJECT" /d:sonar.login="$SONAR_TOKEN" || true
+ - dotnet sonarscanner begin /k:"$SONAR_PROJECT" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$SONAR_TOKEN" /d:sonar.language="cs" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.cs.opencover.reportsPaths="lcov.opencover.xml" || true
  - dotnet restore
  - dotnet build
  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./lcov
