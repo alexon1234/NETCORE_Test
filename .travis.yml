@@ -1,6 +1,5 @@
 language: csharp
 solution: NETCore.sln
-mono: none
 sudo: required
 dist: xenial
 dotnet: 2.2
