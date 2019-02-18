@@ -1,8 +1,12 @@
 #load cake/paths.cake 
 #load cake/projectInfo.cake 
+#tool nuget:?package=Codecov
+
 
 #addin "Cake.Docker"
 #addin nuget:?package=Cake.Coverlet
+#addin nuget:?package=Cake.Codecov
+
 
 var target = Argument("target", "Test");
 var configuration = Argument("configuration", "Release");
@@ -114,6 +118,10 @@ Task("Test")
         };
 
         DotNetCoreTest(Paths.TestProjectFile.FullPath, testSettings, coverletSettings);
+
+        Codecov(
+            coverletSettings.CoverletOutputDirectory + coverletSettings.CoverletOutputName, 
+            "3aded4e7-5777-4d20-90de-6b1ea408ac27");        
     });
 
 
