@@ -119,9 +119,19 @@ Task("Test")
 
         DotNetCoreTest(Paths.TestProjectFile.FullPath, testSettings, coverletSettings);
 
-        Codecov(
-            coverletSettings.CoverletOutputDirectory + coverletSettings.CoverletOutputName, 
-            "3aded4e7-5777-4d20-90de-6b1ea408ac27");        
+        // Codecov(
+        //     coverletSettings.CoverletOutputDirectory + coverletSettings.CoverletOutputName, 
+        //     "3aded4e7-5777-4d20-90de-6b1ea408ac27");     
+
+        var buildVersion = string.Format("{0}.build.{1}",
+            variableThatStores_GitVersion_FullSemVer,
+            BuildSystem.AppVeyor.Environment.Build.Version
+        );
+        var settings = new CodecovSettings {
+            Files = new[] { $"{coverletSettings.CoverletOutputDirectory}{coverletSettings.CoverletOutputName}.xml" },
+            EnvironmentVariables = new Dictionary<string,string> { { "APPVEYOR_BUILD_VERSION", buildVersion } }
+        };
+        Codecov(settings);   
     });
 
 
