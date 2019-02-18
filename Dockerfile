@@ -10,10 +10,10 @@ RUN dotnet restore
 COPY . .
 
 RUN dotnet test "./test/test.csproj" -c Release
-RUN dotnet publish "./webapi/webapi.csproj" -c Release -o out --no-restore
+RUN dotnet publish "./webapi/webapi.csproj" -c Release -o /publish/ --no-restore
 
 # Build runtime image
 FROM microsoft/dotnet:aspnetcore-runtime
-WORKDIR /app
-COPY --from=build-env /app/out .
+WORKDIR /publish
+COPY --from=build-env /publish .
 ENTRYPOINT ["dotnet", "webapi.dll"]
