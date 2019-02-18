@@ -18,9 +18,4 @@ before_build:
   -  dotnet tool install -g Cake.Tool
 build_script:
   -  dotnet cake build.cake
-after_build:
-  - ps: |
-      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-      bash codecov.sh -f "coverage.xml" -t YourUploadToken
 deploy: off
