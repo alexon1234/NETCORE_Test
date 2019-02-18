@@ -3,7 +3,7 @@ version: '3.1'
 services:
   web:
     build:
-      context: ./webapi
+      context: .
       dockerfile: Dockerfile
     ports:
       - 5000:80
@@ -26,14 +26,33 @@ services:
       POSTGRES_DB: "paymentdb"
     networks: 
       - bridge
-    ports: 
-      - 7000:5432
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 5050:8080
+    networks: 
+      - bridge
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    networks: 
+      - bridge
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    ports:
+      - "5601:5601"
     networks: 
       - bridge
 

@@ -40,7 +40,7 @@ namespace webapi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMediatR();
 
-            var connectionString = "host=http://192.168.99.100;port=7000;database=paymentdb;username=root;password=root";
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
             services
                 .AddDbContext<PaymentDbContext>(options => 
                     options.UseNpgsql(connectionString)

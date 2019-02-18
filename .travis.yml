@@ -1,15 +1,27 @@
-language: csharp
-solution: NETCore.sln
-sudo: required
+# language: csharp
+# solution: NETCore.sln
+# sudo: required
+# dist: xenial
+# dotnet: 2.2
+
+# addons:
+#   sonarcloud:
+#     organization: $SONAR_ORGANIZATION_KEY
+#     token: 
+#       secure: $SONAR_TOKEN
+
+# script:
+#  - dotnet build
+#  - sonar-scanner
 dist: xenial
-dotnet: 2.2
-
-addons:
-  sonarcloud:
-    organization: $SONAR_ORGANIZATION_KEY
-    token: 
-      secure: $SONAR_TOKEN
-
+sudo: required
+language: csharp
+mono: none
+dotnet: 2.2.101
+solution: NETCore.sln
+services:
+  - docker
 script:
- - dotnet build
- - sonar-scanner
+  - dotnet tool install -g Cake.Tool 
+  - export PATH=$HOME/.dotnet/tools:$PATH
+  - dotnet cake build.cake 
