@@ -1,8 +1,10 @@
 #load cake/paths.cake 
-#load cake/projectInfo.cake  
-#addin "Cake.Docker"
+#load cake/projectInfo.cake 
 
-var target = Argument("target", "DockerCompose");
+#addin "Cake.Docker"
+#addin nuget:?package=Cake.Coverlet
+
+var target = Argument("target", "Test");
 var configuration = Argument("configuration", "Release");
 var buildId = "";
 var branch = "";
@@ -101,6 +103,19 @@ Task("Test")
     .IsDependentOn("Restore")    
     .Does(() =>
     {
-        DotNetCoreTest(Paths.TestProjectFile.FullPath);
+        var testSettings = new DotNetCoreTestSettings {
+        };
+
+        var coverletSettings = new CoverletSettings {
+            CollectCoverage = true,
+            CoverletOutputFormat = CoverletOutputFormat.opencover,
+            CoverletOutputDirectory = Directory(@".\coverage-results\"),
+            CoverletOutputName = $"results-{DateTime.UtcNow:dd-MM-yyyy-HH-mm-ss-FFF}"
+        };
+
+        DotNetCoreTest(Paths.TestProjectFile.FullPath, testSettings, coverletSettings);
     });
+
+
+
 RunTarget(target);
