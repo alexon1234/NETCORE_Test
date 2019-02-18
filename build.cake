@@ -119,8 +119,8 @@ Task("Test")
 
         DotNetCoreTest(Paths.TestProjectFile.FullPath, testSettings, coverletSettings);
 
-        Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-        codecov.sh -f $"{coverletSettings.CoverletOutputDirectory}{coverletSettings.CoverletOutputName}.xml" -t "3aded4e7-5777-4d20-90de-6b1ea408ac27"
+        // Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+        // codecov.sh -f $"{coverletSettings.CoverletOutputDirectory}{coverletSettings.CoverletOutputName}.xml" -t "3aded4e7-5777-4d20-90de-6b1ea408ac27"
 
         // Codecov(
         //     coverletSettings.CoverletOutputDirectory + coverletSettings.CoverletOutputName, 
