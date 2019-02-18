@@ -18,6 +18,4 @@ before_build:
   -  dotnet tool install -g Cake.Tool
 build_script:
   -  dotnet cake build.cake
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
 deploy: off
