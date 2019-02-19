@@ -4,7 +4,7 @@ using webapi.src.Payment.Domain.ValueObject;
 
 namespace webapi.test.Payment.Domain
 {
-    public class ExpirationDateStub
+    public static class ExpirationDateStub
     {
         public static ExpirationDate Random()
         {

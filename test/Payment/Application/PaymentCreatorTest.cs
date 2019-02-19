@@ -31,7 +31,7 @@ namespace test.Payment.Application
         }
 
         [Fact]
-        public async void Event_have_been_publish_after_payment_created()
+        public async Task Event_have_been_publish_after_payment_created()
         {
             var paymentId = PaymentIdStub.Random();
             var creditCardNumber = CreditCardNumberStub.Random();

@@ -3,7 +3,7 @@ using webapi.src.Payment.Domain.ValueObject;
 
 namespace webapi.test.Payment.Domain
 {
-    public class PaymentIdStub
+    public static class PaymentIdStub
     {
         public static PaymentId Random()
         {

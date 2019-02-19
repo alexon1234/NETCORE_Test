@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace webapi.test.Payment.Domain
 {
-    public class CardHolderStub
+    public static class CardHolderStub
     {
         public static CardHolder Random()
         {
