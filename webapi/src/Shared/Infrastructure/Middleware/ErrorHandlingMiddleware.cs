@@ -16,7 +16,7 @@ namespace webapi.src.Shared.Infrastructure.Middleware
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        public async Task Invoke(HttpContext context)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace webapi.src.Shared.Infrastructure.Middleware
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex).ConfigureAwait(false);
             }
         }
 
@@ -32,9 +32,10 @@ namespace webapi.src.Shared.Infrastructure.Middleware
         {
             var code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
-            if      (exception is ValidationException)     code = HttpStatusCode.UnprocessableEntity;
-            // else if (exception is MyUnauthorizedException) code = HttpStatusCode.Unauthorized;
-            // else if (exception is MyException)             code = HttpStatusCode.BadRequest;
+            if(exception is ValidationException)     
+            {
+                code = HttpStatusCode.UnprocessableEntity;
+            }
 
             var result = JsonConvert.SerializeObject(new { error = exception.Message });
             context.Response.ContentType = "application/json";

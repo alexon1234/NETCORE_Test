@@ -5,10 +5,6 @@ namespace webapi.src.Shared.Domain.ValueObject
 {
     public class DateTimeBiggerThanNowAttribute : ValidationAttribute
     {
-        public DateTimeBiggerThanNowAttribute()
-        {
-        }
-
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             DateTime objectDateTime = (DateTime)value;

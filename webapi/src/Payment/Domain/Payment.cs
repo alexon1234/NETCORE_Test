@@ -71,16 +71,17 @@ namespace webapi.src.Payment.Domain
             return payment;
         }
 
-        public void PaymentProcessedSuccessful()
+        public void PaymentProcessed()
         {
             PaymentStatus = PaymentStatus.Processed;
-            Record(new PaymentProcessedSucessful());
+            Record(new PaymentProcessed(Id.Value));
             
         }
 
-        public void PaymentProcessedFail()
+        public void PaymentFailed()
         {
-            throw new NotImplementedException();
+            PaymentStatus = PaymentStatus.Failed;
+            Record(new PaymentFailed(Id.Value));
         }
 
     }
