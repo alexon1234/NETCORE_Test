@@ -1,8 +1,10 @@
 # Net Core with PostgreSQL
 
 [![Build](https://travis-ci.org/alexon1234/NETCORE_Test.svg?branch=master)](https://travis-ci.org/alexon1234/NETCORE_Test.svg?branch=master)
-[![Build status](https://ci.appveyor.com/api/projects/status/n1i7rr50vboryh2e?svg=true)](https://ci.appveyor.com/project/alexon1234/netcore-test)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NETCORE_Test&metric=alert_status)](https://sonarcloud.io/dashboard?id=NETCORE_Test)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=NETCORE_Test&metric=bugs)](https://sonarcloud.io/dashboard?id=NETCORE_Test)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NETCORE_Test&metric=code_smells)](https://sonarcloud.io/dashboard?id=NETCORE_Test)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NETCORE_Test&metric=coverage)](https://sonarcloud.io/dashboard?id=NETCORE_Test)
 
 
 Things missing:
