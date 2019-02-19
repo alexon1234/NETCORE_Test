@@ -21,11 +21,11 @@ namespace webapi.src.Payment.Application
             var payment = await _repository.FindAsync(paymentId);
             if(await paymentGateway.ProcessPayment(payment)) 
             {
-                payment.PaymentProcessedSuccessful();
+                payment.PaymentProcessed();
             }
             else 
             {
-                payment.PaymentProcessedFail();
+                payment.PaymentFailed();
             }
             await _repository.CreateOrUpdateAsync(payment);
             await _eventBus.Publish(payment.PullDomainEvents());
