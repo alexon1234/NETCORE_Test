@@ -13,7 +13,7 @@ var configuration = Argument("configuration", "Release");
 var buildId = "";
 var branch = "";
 
-if(BuildSystem.TFBuild.IsRunningOnVSTS)
+if(BuildSystem.TFBuild.IsRunningOnAzurePipelinesHosted)
 {
    branch= $"VSTS{BuildSystem.TFBuild.Environment.Repository.Branch}";
    buildId= (BuildSystem.TFBuild.Environment.Build.Id).ToString();

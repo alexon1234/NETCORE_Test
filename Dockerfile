@@ -31,9 +31,9 @@ RUN dotnet test "./test/test.csproj" -c Release /p:CollectCoverage=true /p:Cover
 RUN dotnet tool install --global dotnet-sonarscanner
 ENV PATH="${PATH}:/root/.dotnet/tools"
     
-RUN dotnet sonarscanner begin /k:"NETCORE_Test" /d:sonar.organization="alexon1234-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="e80ad883f5fd9d0f4a9cd19831ca84db2dbb545e" /d:sonar.cs.opencover.reportsPaths="test/coverage.opencover.xml"
+RUN dotnet sonarscanner begin /k:"alexon1234_TODO_APP" /d:sonar.organization="alexon1234-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="a22b844295f76a8e2a09918d27786776e0506378" /d:sonar.cs.opencover.reportsPaths="test/coverage.opencover.xml"
 RUN dotnet build
-RUN dotnet sonarscanner end /d:sonar.login="e80ad883f5fd9d0f4a9cd19831ca84db2dbb545e" 
+RUN dotnet sonarscanner end /d:sonar.login="a22b844295f76a8e2a09918d27786776e0506378" 
 RUN dotnet publish "./webapi/webapi.csproj" -c Release -o /publish/ --no-restore
 
 # Build runtime image
