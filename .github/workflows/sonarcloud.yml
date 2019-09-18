@@ -1,7 +1,6 @@
 name: Sonarcloud workflow
 
 on: [push]
-name: Main Workflow
 jobs:
   sonarCloudTrigger:
     name: SonarCloud Trigger
