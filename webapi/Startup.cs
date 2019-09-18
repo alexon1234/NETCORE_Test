@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using webapi.src.Payment.Domain;
 using webapi.src.Payment.Infrastructure;
 using webapi.src.Shared.Domain.Command;
@@ -38,11 +33,11 @@ namespace webapi
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IEventBus, EventBus>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddMediatR();
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
             services
-                .AddDbContext<PaymentDbContext>(options => 
+                .AddDbContext<PaymentDbContext>(options =>
                     options.UseNpgsql(connectionString)
             );
 
