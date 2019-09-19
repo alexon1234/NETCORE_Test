@@ -1,4 +1,4 @@
-# TODO App
+## TODO App
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alexon1234_TODO_APP&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexon1234_TODO_APP)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=alexon1234_TODO_APP&metric=bugs)](https://sonarcloud.io/dashboard?id=alexon1234_TODO_APP)
