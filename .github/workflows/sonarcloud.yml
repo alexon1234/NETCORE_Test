@@ -1,6 +1,9 @@
 name: Sonarcloud workflow
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
 jobs:
   sonarCloudTrigger:
     name: SonarCloud Trigger
