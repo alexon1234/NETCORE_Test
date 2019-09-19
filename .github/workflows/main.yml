@@ -11,6 +11,7 @@ jobs:
         with:
           dotnet-version: '2.2.103' # SDK Version to use.
       - run: dotnet build
+      - run: dotnet test
 
 
   sonarCloudTrigger:
