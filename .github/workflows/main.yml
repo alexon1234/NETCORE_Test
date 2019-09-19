@@ -1,8 +1,8 @@
 name: Main Workflow
 
-on: [push]
+on: [push, pull_request]
 jobs:
-  run: 
+  build: 
     name: Build projects
     runs-on: ubuntu-latest
     steps:
@@ -11,9 +11,10 @@ jobs:
         with:
           dotnet-version: '2.2.103' # SDK Version to use.
       - run: dotnet build
+      - run: dotnet test
 
 
-  sonarCloudTrigger:
+  sonarcloud:
     name: SonarCloud Trigger
     runs-on: ubuntu-latest
     steps:
