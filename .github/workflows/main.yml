@@ -18,7 +18,7 @@ jobs:
     name: SonarCloud Trigger
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1.1
+    - uses: actions/checkout@master
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@v1.1
       env:
