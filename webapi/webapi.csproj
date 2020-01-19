@@ -8,11 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" version="8.0.0" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" version="3.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" version="2.2.6" />
-
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" version="3.0.0" />
   </ItemGroup>
 
 </Project>
