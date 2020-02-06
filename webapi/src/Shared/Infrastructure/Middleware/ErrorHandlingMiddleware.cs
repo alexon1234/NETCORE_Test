@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 
 namespace webapi.src.Shared.Infrastructure.Middleware
 {
@@ -32,12 +32,12 @@ namespace webapi.src.Shared.Infrastructure.Middleware
         {
             var code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
-            if(exception is ValidationException)     
+            if (exception is ValidationException)
             {
                 code = HttpStatusCode.UnprocessableEntity;
             }
 
-            var result = JsonConvert.SerializeObject(new { error = exception.Message });
+            var result = JsonSerializer.Serialize(new { error = exception.Message });
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
             return context.Response.WriteAsync(result);
