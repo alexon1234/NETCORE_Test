@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using webapi.src.Payment.Domain;
 using webapi.src.Payment.Infrastructure;
 using webapi.src.Shared.Domain.Command;
@@ -29,10 +30,12 @@ namespace webapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IEventBus, EventBus>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
@@ -44,7 +47,7 @@ namespace webapi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -58,7 +61,7 @@ namespace webapi
 
             app.UseHttpsRedirection();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-            app.UseMvc();
+            app.UseRouting();
         }
     }
 }

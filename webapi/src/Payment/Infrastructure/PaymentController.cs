@@ -27,6 +27,12 @@ namespace webapi.src.Payment.Infrastructure
         {
             await _commandBus.Send(processPaymentCommand);
             return StatusCode(200);
-        }        
+        }
+
+        [HttpGet]
+        public IActionResult Show()
+        {
+            return StatusCode(200, "hi");
+        }
     }
 }
