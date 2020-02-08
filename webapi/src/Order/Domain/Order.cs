@@ -32,13 +32,11 @@ namespace webapi.src.Order.Domain
         public void Apply(OrderCreated @event)
         {
             Id = @event.AggregateId;
-            Version++;
         }
 
         public void Apply(OrderStatusChanged @event)
         {
             Status = @event.Status;
-            Version++;
         }
     }
 }

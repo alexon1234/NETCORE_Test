@@ -2,7 +2,7 @@ POST https://localhost:5001/orders
 Content-Type: application/json
 
 {
-    "Id": "{{$guid}}"
+    "Id": "c655d4d3-b7a8-4c06-9c1d-a2b1e7e17b94"
 }
 
 ####

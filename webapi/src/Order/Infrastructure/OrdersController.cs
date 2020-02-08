@@ -34,8 +34,7 @@ namespace webapi.src.Payment.Infrastructure
         }
 
         [HttpPost]
-        [Route("")]
-        public async Task<IActionResult> Create(CreateOrderCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateOrderCommand command)
         {
             await _commandBus.Send(command);
             return Ok();
