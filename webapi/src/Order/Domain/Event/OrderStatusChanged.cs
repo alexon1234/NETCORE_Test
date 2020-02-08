@@ -5,7 +5,7 @@ namespace webapi.src.Order.Domain
 {
     public class OrderStatusChanged : Event
     {
-        public OrderStatusChanged(Guid aggregateId, OrderStatus status) : base(aggregateId, null, null)
+        public OrderStatusChanged(Guid aggregateId, OrderStatus status) : base(aggregateId)
         {
             Status = status;
         }

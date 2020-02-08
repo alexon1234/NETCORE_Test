@@ -19,5 +19,11 @@ namespace webapi.src.Shared.Domain
             Id = id.HasValue ? id.Value : Guid.NewGuid();
             OccurredOn = occurredOn.HasValue ? occurredOn.Value : DateTime.Now;
         }
+        protected Event(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+            Id = Guid.NewGuid();
+            OccurredOn = DateTime.Now;
+        }
     }
 }
