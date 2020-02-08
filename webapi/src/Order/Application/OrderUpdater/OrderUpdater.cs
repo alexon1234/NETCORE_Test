@@ -13,10 +13,8 @@ namespace webapi.src.Order.Application
             _repo = repo;
         }
 
-        public async Task Update(Guid orderId, OrderStatus status)
+        public async Task Update(Order.Domain.Order order)
         {
-            var order = await _repo.Load(orderId);
-            order.Delivered();
             await _repo.Store(order);
         }
     }

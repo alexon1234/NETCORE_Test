@@ -41,13 +41,23 @@ namespace webapi.src.Payment.Infrastructure
         }
 
         [HttpPatch]
-        [Route("{id}/{status}")]
-        public async Task<IActionResult> UpdateStatus(Guid id, OrderStatus status)
+        [Route("{id}/delivered")]
+        public async Task<IActionResult> Delivered(Guid id)
         {
-            await _commandBus.Send(new UpdateOrderStatusCommand()
+            await _commandBus.Send(new OrderDeliveredCommand()
             {
                 Id = id,
-                Status = status
+            });
+            return Ok();
+        }
+
+        [HttpPatch]
+        [Route("{id}/shipped")]
+        public async Task<IActionResult> Shipped(Guid id)
+        {
+            await _commandBus.Send(new OrderShippedCommand()
+            {
+                Id = id,
             });
             return Ok();
         }

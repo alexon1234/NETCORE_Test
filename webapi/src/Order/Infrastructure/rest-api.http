@@ -6,11 +6,13 @@ Content-Type: application/json
 }
 
 ####
-
 GET https://localhost:5001/orders/c655d4d3-b7a8-4c06-9c1d-a2b1e7e17b94
 Content-Type: application/json
 
 ###
+PATCH https://localhost:5001/orders/c655d4d3-b7a8-4c06-9c1d-a2b1e7e17b94/delivered
+Content-Type: application/json
 
-PATCH https://localhost:5001/orders/c655d4d3-b7a8-4c06-9c1d-a2b1e7e17b94/1
+###
+PATCH https://localhost:5001/orders/c655d4d3-b7a8-4c06-9c1d-a2b1e7e17b94/shipped
 Content-Type: application/json

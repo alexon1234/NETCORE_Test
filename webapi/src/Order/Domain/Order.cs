@@ -17,22 +17,27 @@ namespace webapi.src.Order.Domain
 
         public void Delivered()
         {
-            var statusChanged = new OrderStatusChanged(Id, OrderStatus.Delivered);
-            Apply(statusChanged);
-            AddUncommittedEvent(statusChanged);
+            var @statusChanged = new OrderStatusChanged(Id, OrderStatus.Delivered);
+            Apply(@statusChanged);
+            AddUncommittedEvent(@statusChanged);
+        }
+
+        public void Shipped()
+        {
+            var @statusChanged = new OrderStatusChanged(Id, OrderStatus.Shipped);
+            Apply(@statusChanged);
+            AddUncommittedEvent(@statusChanged);
         }
 
         public void Apply(OrderCreated @event)
         {
             Id = @event.AggregateId;
-
             Version++;
         }
 
         public void Apply(OrderStatusChanged @event)
         {
             Status = @event.Status;
-
             Version++;
         }
     }
