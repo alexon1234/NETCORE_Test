@@ -1,9 +1,9 @@
 using MediatR;
 
-namespace webapi.src.Shared.Domain.Query
+namespace webapi.src.Shared.Domain
 {
-    public interface IQuery<out TResponse>: IRequest<TResponse>
+    public interface IQuery<out TResponse> : IRequest<TResponse>
     {
-        
+
     }
 }

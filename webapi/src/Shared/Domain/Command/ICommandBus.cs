@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 
-namespace webapi.src.Shared.Domain.Command
+namespace webapi.src.Shared.Domain
 {
     public interface ICommandBus
     {
-        Task Send<TCommand>(TCommand command) where TCommand: ICommand;
+        Task Send<TCommand>(TCommand command) where TCommand : ICommand;
     }
 }

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using webapi.src.Payment.Domain;
-using webapi.src.Payment.Infrastructure;
-using webapi.src.Shared.Domain.Command;
-using webapi.src.Shared.Domain.Event;
+using webapi.src.Order.Domain;
+using webapi.src.Order.Infrastructure;
+using webapi.src.Shared.Domain;
 using webapi.src.Shared.Infrastructure;
 using webapi.src.Shared.Infrastructure.Command;
 using webapi.src.Shared.Infrastructure.Middleware;
@@ -32,17 +29,12 @@ namespace webapi
         {
             services.AddControllers();
 
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICommandBus, CommandBus>();
-            services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IEventBus, EventBus>();
+            services.AddScoped<IQueryBus, QueryBus>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-
-            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            services
-                .AddDbContext<PaymentDbContext>(options =>
-                    options.UseNpgsql(connectionString)
-            );
 
         }
 
@@ -53,11 +45,16 @@ namespace webapi
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+
+            }
+
 
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

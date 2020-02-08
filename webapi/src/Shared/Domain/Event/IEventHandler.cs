@@ -1,9 +1,9 @@
 using MediatR;
 
-namespace webapi.src.Shared.Domain.Event
+namespace webapi.src.Shared.Domain
 {
-    public interface IEventHandler<in TEvent>: INotificationHandler<TEvent> where TEvent: IEvent
+    public interface IEventHandler<in TEvent> : INotificationHandler<TEvent> where TEvent : Event
     {
-        
+
     }
 }

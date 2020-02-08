@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using MediatR;
-using webapi.src.Shared.Domain.Command;
+using webapi.src.Shared.Domain;
 
 namespace webapi.src.Shared.Infrastructure.Command
 {
-    public class CommandBus: ICommandBus
+    public class CommandBus : ICommandBus
     {
         private readonly IMediator _mediator;
 

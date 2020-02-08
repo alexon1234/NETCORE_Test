@@ -1,9 +1,9 @@
 using MediatR;
 
-namespace webapi.src.Shared.Domain.Command
+namespace webapi.src.Shared.Domain
 {
-    public interface ICommand: IRequest
+    public interface ICommand : IRequest
     {
-        
+
     }
 }
