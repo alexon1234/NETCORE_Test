@@ -34,7 +34,7 @@ namespace webapi.src.Order.Domain
             Id = @event.AggregateId;
         }
 
-        protected void Apply(OrderStatusChanged @event)
+        public void Apply(OrderStatusChanged @event)
         {
             Status = @event.Status;
         }

@@ -7,7 +7,7 @@ namespace webapi.src.Shared.Domain
     {
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
-        private readonly List<object> _uncommittedEvents = new List<object>();
+        private readonly List<Event> _uncommittedEvents = new List<Event>();
 
         public IEnumerable<object> GetUncommittedEvents()
         {
@@ -19,7 +19,7 @@ namespace webapi.src.Shared.Domain
             _uncommittedEvents.Clear();
         }
 
-        protected void AddUncommittedEvent(object @event)
+        protected void AddUncommittedEvent(Event @event)
         {
             _uncommittedEvents.Add(@event);
         }
