@@ -29,12 +29,12 @@ namespace webapi.src.Order.Domain
             AddUncommittedEvent(@statusChanged);
         }
 
-        public void Apply(OrderCreated @event)
+        protected void Apply(OrderCreated @event)
         {
             Id = @event.AggregateId;
         }
 
-        public void Apply(OrderStatusChanged @event)
+        protected void Apply(OrderStatusChanged @event)
         {
             Status = @event.Status;
         }
