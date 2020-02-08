@@ -13,16 +13,11 @@ namespace webapi.src.Shared.Domain
 
         public abstract string Name { get; }
 
-        public Event(Guid aggregateId, Guid? id = null, DateTime? occurredOn = null)
+        protected Event(Guid aggregateId, Guid? id = null, DateTime? occurredOn = null)
         {
             AggregateId = aggregateId;
             Id = id.HasValue ? id.Value : Guid.NewGuid();
             OccurredOn = occurredOn.HasValue ? occurredOn.Value : DateTime.Now;
-        }
-
-        public byte[] ToByte()
-        {
-            return JsonSerializer.SerializeToUtf8Bytes(this, new JsonSerializerOptions() { WriteIndented = true });
         }
     }
 }

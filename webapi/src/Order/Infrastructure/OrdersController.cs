@@ -26,7 +26,7 @@ namespace webapi.src.Payment.Infrastructure
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await _queryBus.Send<FindOrderByIdQuery, Order.Domain.Order>(
-                new FindOrderByIdQuery()
+                new FindOrderByIdQuery
                 {
                     Id = id
                 }
@@ -44,7 +44,7 @@ namespace webapi.src.Payment.Infrastructure
         [Route("{id}/delivered")]
         public async Task<IActionResult> Delivered(Guid id)
         {
-            await _commandBus.Send(new OrderDeliveredCommand()
+            await _commandBus.Send(new OrderDeliveredCommand
             {
                 Id = id,
             });
@@ -55,7 +55,7 @@ namespace webapi.src.Payment.Infrastructure
         [Route("{id}/shipped")]
         public async Task<IActionResult> Shipped(Guid id)
         {
-            await _commandBus.Send(new OrderShippedCommand()
+            await _commandBus.Send(new OrderShippedCommand
             {
                 Id = id,
             });
