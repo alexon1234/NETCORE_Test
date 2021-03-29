@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Marten" Version="3.11.0" />
+    <PackageReference Include="Marten" Version="3.13.4" />
     <PackageReference Include="MediatR" version="8.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     </ItemGroup>
